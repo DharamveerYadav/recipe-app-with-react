@@ -3,31 +3,6 @@
    background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);;
 }
 
-.search-form {
-min-height: 10vh;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.search-bar {
-  width: 50%;
-  border: none;
-  padding: 10px;
-}
-
-.search-button {
-  background-color: lightcoral;
-  border: none;
-  padding: 10px;
-  color: white;
-}
-
-.recipes {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
 
 
 nav {
@@ -46,4 +21,8 @@ nav {
   list-style: none;
 }
 
+.logo {
+  text-decoration: none;
+  color: blue;
+}
 
