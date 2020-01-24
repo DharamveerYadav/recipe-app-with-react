@@ -4,20 +4,16 @@ import "./home.css";
 import Recipe from "./Recipe/recipes";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import * as action from "../../store/action/recipes";
+import { connect } from "react-redux";
 
-export default function Home() {
-  const APP_ID = "ada68d83";
-  const APP_KEY = "3c96ec76e86f22de3f62188d51b848de";
-  const API_URL = `"https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}"
-    `;
-
-  const [recipes, setRecipes] = useState([]);
+const Home = props => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("paneer");
 
   useEffect(() => {
     getRecipies();
-    console.log("effect is getting fire");
+    console.log("effect is getting fire props.recipes ", props.recipes);
   }, [query]);
 
   const updateSearch = e => {
@@ -31,12 +27,8 @@ export default function Home() {
     console.log("passing query value ", query);
   };
 
-  const getRecipies = async () => {
-    const recipes = await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}
-      `);
-    // const recipes = await recipesRes;
-    console.log("recipies fetched ", recipes);
-    setRecipes(recipes.data.hits);
+  const getRecipies = () => {
+    props.onInitRecipes(query);
   };
 
   return (
@@ -53,7 +45,7 @@ export default function Home() {
         </button>
       </form>
       <div className="recipes">
-        {recipes.map(recipe => (
+        {props.recipes.map(recipe => (
           <Link
             to={{
               pathname: "/recipe-detail",
@@ -73,4 +65,17 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    recipes: state.recipes.recipes
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitRecipes: (query = "paneer") => dispatch(action.initRecipes(query))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
