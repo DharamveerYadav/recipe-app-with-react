@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./home.css";
 import Recipe from "./Recipe/recipes";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Home() {
   const APP_ID = "ada68d83";
@@ -31,11 +32,11 @@ export default function Home() {
   };
 
   const getRecipies = async () => {
-    const recipesRes = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}
+    const recipes = await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}
       `);
-    const recipes = await recipesRes.json();
+    // const recipes = await recipesRes;
     console.log("recipies fetched ", recipes);
-    setRecipes(recipes.hits);
+    setRecipes(recipes.data.hits);
   };
 
   return (

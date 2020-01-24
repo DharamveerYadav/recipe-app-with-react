@@ -19,6 +19,10 @@ export default class Detail extends Component {
     console.log("printign current recipe ", currRecipe);
   }
 
+  goBack = () => {
+    console.log("printing props", this.props);
+    this.props.history.push("/");
+  };
   showhealthInfo = () => {
     console.log("inside show Health Info");
     if (this.state.recipe.calories > 500) {
@@ -44,7 +48,9 @@ export default class Detail extends Component {
               </ul>
             </Card.Text>
             <Card.Footer>{this.state.healthInfo}</Card.Footer>
-            <Button variant="primary">Go Back</Button>
+            <Button variant="primary" onClick={this.goBack}>
+              Go Back
+            </Button>
             <HealthInfoButton
               showHealthInfo={this.showhealthInfo}
             ></HealthInfoButton>
