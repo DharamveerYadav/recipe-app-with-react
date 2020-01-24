@@ -8,19 +8,20 @@ import Contact from "./pages/Contact/Contact";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Home/Detail/Detail";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
-
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/recipe-detail" component={Detail} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/recipe-detail" component={Detail} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+          </Switch>
+        </Layout>
       </div>
     </Router>
   );

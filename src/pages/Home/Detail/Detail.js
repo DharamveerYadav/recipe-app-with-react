@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
+import HealthInfoButton from "./HealthInfo/HealthInfo";
 export default class Detail extends Component {
   state = {
-    recipe: null
+    recipe: null,
+    healthInfo: ""
   };
   static propTypes = {
     prop: PropTypes
@@ -16,6 +18,15 @@ export default class Detail extends Component {
     });
     console.log("printign current recipe ", currRecipe);
   }
+
+  showhealthInfo = () => {
+    console.log("inside show Health Info");
+    if (this.state.recipe.calories > 500) {
+      this.setState({
+        healthInfo: "Not Healthy"
+      });
+    }
+  };
 
   render() {
     console.log("data ", this.state.recipe);
@@ -32,7 +43,11 @@ export default class Detail extends Component {
                 ))}
               </ul>
             </Card.Text>
+            <Card.Footer>{this.state.healthInfo}</Card.Footer>
             <Button variant="primary">Go Back</Button>
+            <HealthInfoButton
+              showHealthInfo={this.showhealthInfo}
+            ></HealthInfoButton>
           </Card.Body>
         </Card>
       </div>

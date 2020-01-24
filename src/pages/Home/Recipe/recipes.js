@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function recipes({ title, calories, imgUrl }) {
   return (
@@ -9,5 +10,9 @@ function recipes({ title, calories, imgUrl }) {
     </div>
   );
 }
+
+recipes.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 export default recipes;

@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./home.css";
-import Recipe from "../recipes";
+import Recipe from "./Recipe/recipes";
 import { Link } from "react-router-dom";
 
 export default function Home() {
